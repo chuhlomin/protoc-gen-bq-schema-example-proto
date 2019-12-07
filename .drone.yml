@@ -7,14 +7,22 @@ steps:
   - name: build
     image: chuhlomin/protoc-gen-bq-schema:1.0
     commands:
-     - mkdir bq_schema
-     - protoc --bq-schema_out=bq_schema Bar.proto -I bq -I .
-     - ls -la bq_schema
+      - mkdir bq_schema
+      - protoc --bq-schema_out=bq_schema Bar.proto -I bq -I .
 
-  #- name: maybe-commit
-  #  image: docker/git
-  #  commands: ...
-  #  todo: commit to protoc-gen-bq-schema-example-bq if changed
+  - name: maybe-commit
+    image: plugins/git
+    commands:
+      - git clone https://github.com/chuhlomin/protoc-gen-bq-schema-example-bq.git
+      - cd protoc-gen-bq-schema-example-bq
+      - rm -r foo
+      - mv ../bq_schema/* .
+      - git add .
+      - if [ -n "$(git status --porcelain)" ]; then echo "Changes detected"; else echo "No changes detected"; return 0; fi
+      - git config --global user.email "build@drone.io"
+      - git config --global user.name "Drone Build"
+      - git commit -m "Build $$DRONE_BUILD_NUMBER [CI SKIP]"
+      - git push
 
 trigger:
   branch:
