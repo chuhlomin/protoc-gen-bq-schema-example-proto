@@ -1,0 +1,24 @@
+---
+kind: pipeline
+type: docker
+name: default
+
+steps:
+  - name: build
+    image: chuhlomin/protoc-gen-bq-schema:1.0
+    commands:
+     - mkdir bq_schema
+     - protoc --bq-schema_out=bq_schema Bar.proto -I .
+     - ls -la bq_schema
+
+  #- name: maybe-commit
+  #  image: docker/git
+  #  commands: ...
+  #  todo: commit to protoc-gen-bq-schema-example-bq if changed
+
+trigger:
+  branch:
+    - master
+
+image_pull_secrets:
+  - dockerconfigjson
