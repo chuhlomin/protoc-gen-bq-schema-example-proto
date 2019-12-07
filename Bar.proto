@@ -1,0 +1,30 @@
+syntax = "proto3";
+package foo;
+import "bq_table.proto";
+import "bq_field.proto";
+
+message Bar {
+  option (gen_bq_schema.bigquery_opts).table_name = "bar_table";
+  option (gen_bq_schema.bigquery_opts).extra_fields = "f:INTEGER";
+  option (gen_bq_schema.bigquery_opts).extra_fields = "g:RECORD:Nested";
+
+  message Nested {
+    repeated int32 a = 1;
+  }
+
+  int32 a = 1; // field comment
+  Nested b = 2;
+  string c = 3;
+
+  bool d = 4 [(gen_bq_schema.bigquery).ignore = true];
+  uint64 e = 5 [
+    (gen_bq_schema.bigquery) = {
+      require: true
+      type_override: 'TIMESTAMP'
+    }
+  ];
+}
+
+message Baz {
+  int32 a = 1;
+}
