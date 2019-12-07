@@ -1,5 +1,7 @@
 syntax = "proto3";
+
 package foo;
+
 import "bq_table.proto";
 import "bq_field.proto";
 
