@@ -15,7 +15,7 @@ steps:
     commands:
       - git clone https://github.com/chuhlomin/protoc-gen-bq-schema-example-bq.git
       - cd protoc-gen-bq-schema-example-bq
-      - rm -r foo
+      - rm -r -f foo
       - mv ../bq_schema/* .
       - git add .
       - if [ -n "$(git status --porcelain)" ]; then echo "Changes detected"; else echo "No changes detected"; return 0; fi
