@@ -3,10 +3,6 @@ package foo;
 import "bq_table.proto";
 import "bq_field.proto";
 
-message Baz {
-  repeated int32 A = 1;
-}
-
 message Bar {
   option (gen_bq_schema.bigquery_opts).table_name = "bar_table";
   option (gen_bq_schema.bigquery_opts).extra_fields = "f:INTEGER";
