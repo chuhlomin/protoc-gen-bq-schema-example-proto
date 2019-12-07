@@ -8,7 +8,7 @@ steps:
     image: chuhlomin/protoc-gen-bq-schema:1.0
     commands:
      - mkdir bq_schema
-     - protoc --bq-schema_out=bq_schema Bar.proto -I .
+     - protoc --bq-schema_out=bq_schema Bar.proto -I bq
      - ls -la bq_schema
 
   #- name: maybe-commit
