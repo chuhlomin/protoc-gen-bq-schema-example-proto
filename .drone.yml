@@ -5,10 +5,10 @@ name: default
 
 steps:
   - name: build
-    image: chuhlomin/protoc-gen-bq-schema:1.4
+    image: chuhlomin/protoc-gen-bq-schema:1.5
     commands:
       - mkdir bq_schema
-      - protoc -I/protobuf/ -I. -Ibq --bq-schema_out=bq_schema foo.proto
+      - protoc -I/protobuf/ -I. -Ibq --bq-schema_out=enumsasints=true:bq_schema foo.proto
 
   - name: maybe-commit
     image: plugins/git
