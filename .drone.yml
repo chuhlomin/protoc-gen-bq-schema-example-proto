@@ -18,6 +18,7 @@ steps:
       - rm -r -f foo
       - mv ../bq_schema/* .
       - git add .
+      - git status --porcelain
       - if [ -n "$(git status --porcelain)" ]; then echo "Changes detected"; else echo "No changes detected"; return 0; fi
       - git config --global user.email "build@drone.io"
       - git config --global user.name "Drone Build"

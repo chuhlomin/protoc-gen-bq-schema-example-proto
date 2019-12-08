@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package foo;
 
+import "google/type/date.proto";
 import "bq_table.proto";
 import "bq_field.proto";
 
@@ -25,6 +26,8 @@ message Bar {
       type_override: 'TIMESTAMP'
     }
   ];
+
+  google.type.Date date = 6 [(gen_bq_schema.bigquery).type_override = "DATE"];
 }
 
 message Baz {
