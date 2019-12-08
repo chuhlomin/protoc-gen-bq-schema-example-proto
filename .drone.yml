@@ -5,7 +5,7 @@ name: default
 
 steps:
   - name: build
-    image: chuhlomin/protoc-gen-bq-schema:1.2
+    image: chuhlomin/protoc-gen-bq-schema:1.4
     commands:
       - mkdir bq_schema
       - protoc -I/protobuf/ -I. -Ibq --bq-schema_out=bq_schema foo.proto
