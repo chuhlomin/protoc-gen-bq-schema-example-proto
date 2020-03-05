@@ -13,7 +13,7 @@ steps:
   - name: maybe-commit
     image: plugins/git
     commands:
-      - git clone https://github.com/chuhlomin/protoc-gen-bq-schema-example-bq.git
+      - git clone git@github.com:chuhlomin/protoc-gen-bq-schema-example-bq.git
       - cd protoc-gen-bq-schema-example-bq
       - rm -r -f foo
       - mv ../bq_schema/* .
