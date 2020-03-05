@@ -1,5 +1,11 @@
 OUTDIR=bq_schema
 
+.PHONY: help
+## help: prints this help message
+help:
+	@echo "Usage: \n"
+	@sed -n 's/^##//p' ${MAKEFILE_LIST} | column -t -s ':' |  sed -e 's/^/ /'
+
 .PHONY: build
 ## build: builds BigQuery schema from Protobuf using Docker image
 build:
@@ -18,9 +24,3 @@ clean:
 	@echo "Cleaning..."
 	@rm -r -f ${OUTDIR}/*
 	@echo "Done"
-
-.PHONY: help
-## help: prints this help message
-help:
-	@echo "Usage: \n"
-	@sed -n 's/^##//p' ${MAKEFILE_LIST} | column -t -s ':' |  sed -e 's/^/ /'

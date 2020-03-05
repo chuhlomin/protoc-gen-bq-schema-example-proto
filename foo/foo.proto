@@ -37,6 +37,8 @@ message Bar {
   google.type.Date date = 6 [(gen_bq_schema.bigquery).type_override = "DATE"];
 
   EnumAllowingAlias status = 8;
+
+  map<string, string> someMap = 9;
 }
 
 message Baz {
